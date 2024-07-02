@@ -1,0 +1,36 @@
+type Champion {
+    """O id do campeão"""
+    id: Int!
+    """O nome do campeão"""
+    name: String!
+    """O papel do campeão"""
+    role: Role!
+    """A história do campeão"""
+    lore: String
+    """A url da imagem do campeão"""
+    imageUrl: String
+}
+
+input UpdateChampion {
+    name: String
+    roleId: Int
+    lore: String
+    imageUrl: String
+}
+
+type Role {
+    id: Int!
+    name: String!
+}
+
+type Query {
+    getChampions(name: String, role: String): [Champion!]!
+    getChampionById(id: Int!): Champion
+    getRoles(name: String): [Role!]!
+}
+
+type Mutation {
+    createChampion(name: String!, roleId: Int!, lore: String, imageUrl: String): Champion
+    updateChampion(id: Int!, data: UpdateChampion!): Champion
+    deleteChampion(id: Int!): Boolean
+}
